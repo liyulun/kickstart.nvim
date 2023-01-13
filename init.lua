@@ -100,9 +100,11 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 -- Set highlight on search
 vim.o.hlsearch = false
+vim.o.incsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -428,6 +430,13 @@ cmp.setup {
 }
 
 vim.api.nvim_set_keymap('n', '<F12>', ':TranslateW<CR>', {})
+-- key mapping to move lines
+vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', {})
+vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>==', {})
+vim.api.nvim_set_keymap('i', '<A-j>', '<ESC>:m .+1<CR>==gi', {})
+vim.api.nvim_set_keymap('i', '<A-k>', '<ESC>:m .-2<CR>==gi', {})
+vim.api.nvim_set_keymap('v', '<A-j>', ":m '>+1<CR>gv=gv", {})
+vim.api.nvim_set_keymap('v', '<A-k>', ":m '<-2<CR>gv=gv", {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
