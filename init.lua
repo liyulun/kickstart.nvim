@@ -95,6 +95,8 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = vim.fn.expand '$MYVIMRC',
 })
 
+vim.g.do_legacy_filetype = 0
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
@@ -120,7 +122,9 @@ vim.o.mouse = 'a'
 vim.o.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.o.undofile = false
+
+vim.o.swapfile = false
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
@@ -444,6 +448,13 @@ vim.api.nvim_set_keymap('i', '<A-j>', '<ESC>:m .+1<CR>==gi', {})
 vim.api.nvim_set_keymap('i', '<A-k>', '<ESC>:m .-2<CR>==gi', {})
 vim.api.nvim_set_keymap('v', '<A-j>', ":m '>+1<CR>gv=gv", {})
 vim.api.nvim_set_keymap('v', '<A-k>', ":m '<-2<CR>gv=gv", {})
+vim.api.nvim_set_keymap('n', '<A-Down>', ':m .+1<CR>==', {})
+vim.api.nvim_set_keymap('n', '<A-Up>', ':m .-2<CR>==', {})
+vim.api.nvim_set_keymap('i', '<A-Down>', '<ESC>:m .+1<CR>==gi', {})
+vim.api.nvim_set_keymap('i', '<A-Up>', '<ESC>:m .-2<CR>==gi', {})
+vim.api.nvim_set_keymap('v', '<A-Down>', ":m '>+1<CR>gv=gv", {})
+vim.api.nvim_set_keymap('v', '<A-Up>', ":m '<-2<CR>gv=gv", {})
+
 
 -- key mapping to open file explore tree
 vim.keymap.set('n', '<leader>e', vim.cmd.Ex)
